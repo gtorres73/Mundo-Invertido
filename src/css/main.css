@@ -1,0 +1,457 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+/* **** PALETA DE CORES ATUALIZADA COM BASE NO FIGMA **** */
+:root {
+  /* O vermelho principal agora é mais vibrante, como no Figma */
+  --primary-color: #e72727; /* Era #cf0f0f */
+  --primary-color-contrast: #ffffff;
+  --field-background-color: #000;
+}
+
+.light-theme {
+  /* Fundo do tema claro levemente acinzentado */
+  --page-background: linear-gradient(
+    180deg,
+    #fbfbfb 0%,
+    #fdfdfd9d 65%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+  --header-background-color: #e3e3e3;
+  --highlight-color: #000000;
+  --featured-font-family: "Archivo", sans-serif;
+  --character-top-image-src: url("../images/characters/kids-on-the-bike.svg");
+  /* Cor dos personagens suavizada para cinza escuro */
+  --character-top-image-color: #dbd7d7; /* Era #000000 */
+  --character-bottom-image-src: url("../images/characters/inverted-world-monster.svg");
+  --character-bottom-image-color: #a7a3a3cb;
+  --background-lamp-image: url("../images/backgrounds/lamps.png");
+  --footer-background-color: #b5bbbf;
+}
+.dark-theme {
+  /* Fundo do tema escuro agora é um preto sólido e profundo */
+  --page-background: linear-gradient(
+    180deg,
+    #0d0d0d 0%,
+    #0d0d0d 100%
+  );
+  --header-background-color: #220f0f;
+  --highlight-color: #ffffff;
+  --featured-font-family: "Rubik Glitch", sans-serif;
+  --character-bottom-image-src: url("../images/characters/kids-on-the-bike.svg");
+  --character-bottom-image-color: rgba(255, 255, 255, 0.25);
+  --character-top-image-src: url("../images/characters/inverted-world-monster.svg");
+  --character-top-image-color: #fff;
+  --background-lamp-image: url("../images/backgrounds/lamps-inverted.png");
+  --footer-background-color: #000;
+}
+
+.dark-theme header::before {
+  filter: brightness(0.3) saturate(0);
+}
+
+.dark-theme button,
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3 {
+  letter-spacing: 5px;
+  font-weight: normal;
+}
+
+.dark-theme .invert-element {
+  transform: rotateZ(180deg) scaleX(-1);
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////// */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--featured-font-family);
+  font-size: 3rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  font-weight: 800;
+}
+
+p {
+  color: var(--highlight-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+p,
+label {
+  font-family: libre baskerville, serif;
+}
+
+input,
+textarea {
+  font-family: libre baskerville, serif;
+  background-color: var(--field-background-color);
+}
+
+textarea:focus-visible,
+input:focus-visible {
+  outline: none;
+  border-color: black;
+}
+
+button {
+  padding: 16px 32px;
+  background-color: transparent;
+  font-weight: 900;
+  font-family: var(--featured-font-family);
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* HEADER */
+
+header {
+  min-height: 850px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--header-background-color);
+  position: relative;
+}
+
+header::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url(../images/banner/florest.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: saturate(0);
+  z-index: -1;
+}
+
+.header-content {
+  max-width: 700px;
+  padding: 80px;
+  text-align: center;
+}
+
+.header-content img {
+  width: 80%;
+}
+
+.header-content p {
+  margin: 30px 0 50px;
+}
+
+.header-content button {
+  border: 3px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+button:hover {
+  background-color: var(--primary-color);
+  color: var(--primary-color-contrast);
+}
+
+/* **** CSS DOS PERSONAGENS CORRIGIDO **** */
+
+/* Regra .world-characters removida por não ser mais necessária, limpando o código. */
+
+/* Personagem de cima: posicionado na BASE do header */
+#top-characters {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 900px;
+  height: 350px;
+  z-index: 1;
+
+  background-color: var(--character-top-image-color);
+  mask-image: var(--character-top-image-src);
+  -webkit-mask-image: var(--character-top-image-src);
+  mask-position: bottom;
+  -webkit-mask-position: bottom;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+#bottom-characters {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) rotateZ(180deg) scaleX(-1);
+  width: 100%;
+  max-width: 900px;
+  height: 350px;
+  z-index: 1;
+
+
+  background-color: var(--character-bottom-image-color);
+  mask-image: var(--character-bottom-image-src);
+  -webkit-mask-image: var(--character-bottom-image-src);
+  mask-position: bottom;
+  -webkit-mask-position: bottom;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+/* main */
+
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--page-background),
+    url("../images/backgrounds/florest.png") no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 95px;
+}
+
+label {
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+/* section1 */
+.container {
+  max-width: 1200px;
+}
+
+#section-inverted-world {
+  align-items: center;
+  margin-top: 250px;
+}
+
+#section-inverted-world .section-texts {
+  width: 50%;
+}
+
+#section-inverted-world .section-texts h2 {
+  max-width: 300px;
+}
+
+/* section2  */
+
+#section-stranger-things-trailer .section-texts {
+  width: 50%;
+  text-align: right;
+}
+
+#section-stranger-things-trailer .section-texts h2 {
+  max-width: 425px;
+  display: inline-block;
+}
+
+#section-stranger-things-trailer .video-frame {
+  background-color: red;
+}
+
+#section-stranger-things-trailer .video-frame iframe {
+  position: relative;
+  bottom: 10px;
+  left: 15px;
+  border: 3px solid;
+  border-image: linear-gradient(
+    var(--primary-color),
+    var(--primary-color-contrast)
+  );
+  border-image-slice: 10;
+}
+
+/* section3 */
+#section-stranger-things-gallery {
+  justify-content: center;
+  width: 100%;
+
+  /* Mantivemos a posição em 110% e apenas diminuímos o tamanho (zoom) para 40% */
+  background: var(--background-lamp-image) 100% / 40% no-repeat;
+}
+
+#section-stranger-things-gallery .container {
+  width: 100%;
+}
+
+#gallery-title {
+  width: 800px;
+}
+
+#section-stranger-things-gallery .gallery-container {
+  display: flex;
+  gap: 50px;
+  padding-left: 20px;
+}
+
+#section-stranger-things-gallery .gallery-image {
+  width: 250px;
+  height: 250px;
+  outline: 20px solid var(--highlight-color);
+  border: 3px solid var(--primary-color);
+  box-sizing: initial;
+}
+
+#section-stranger-things-gallery .gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 10px solid var(--highlight-color);
+}
+
+/* form section */
+
+#section-form {
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+#section-form h2 {
+  width: 600px;
+}
+
+#section-form .form-content h3 {
+  color: var(--highlight-color);
+  flex-basis: 30%;
+  text-align: right;
+  margin: 0;
+}
+#section-form .form-content h3 span {
+  color: var(--primary-color);
+}
+
+#section-form .form-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#section-form .form-container {
+  flex-basis: 50%;
+  position: relative;
+}
+
+#section-form .form-container::after {
+  content: "";
+  background-color: var(--highlight-color);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: -1;
+}
+
+#section-form .form-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  background-color: var(--primary-color);
+  color: var(--primary-color-contrast);
+  text-align: left;
+}
+
+#section-form .form-container form button {
+  border: none;
+  background-color: var(--field-background-color);
+  color: var(--primary-color-contrast);
+  max-width: 300px;
+  align-self: center;
+  margin-top: 1rem;
+}
+
+#section-form .form-container form button:hover {
+  background-color: var(--primary-color-contrast);
+  color: var(--primary-color);
+}
+
+#bg {
+  position: absolute;
+  width: 50%;
+  right: 60%;
+  opacity: 0.3;
+  z-index: -9;
+}
+
+footer {
+  padding: 60px 0;
+  background-color: var(--footer-background-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+footer p {
+  max-width: 700px;
+  margin-bottom: 24px;
+}
+
+footer::before,
+footer::after {
+  content: "";
+  width: 300px;
+  height: 200px;
+  background: url("../images/footer/tape.svg") no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: -30px;
+}
+
+footer::before {
+  left: -50px;
+  transform: rotateZ(-10deg);
+}
+
+footer::after {
+  right: -50px;
+  transform: rotateZ(10deg);
+}
+
+#github,
+#linkedin {
+    font-size: 24px;
+    text-decoration: none;
+    color: red;
+    margin-left: 5px;
+    transition: 0.3s ease;
+
+
+}
+
+#github:hover,
+#linkedin:hover {
+    color: white;
+}
